@@ -26,6 +26,13 @@ public class SimpleCalculator extends AppCompatActivity {
         return false;
     }
 
+    public void deleteFromMemory(View view){
+        if(operationMemory.length()!=0){
+            operationMemory = operationMemory.substring(0,operationMemory.length()-1);
+            updateMemoryTextView();
+        }
+    }
+
     public void pressButton(View view){
         Button pressedButton = (Button) view;
         Log.i("Button pressed:", pressedButton.getTag().toString());
@@ -45,7 +52,7 @@ public class SimpleCalculator extends AppCompatActivity {
                 if(isSign(String.valueOf(operationMemory.charAt(operationMemory.length()-1)))){ //if last sign in memory is sign then we swap it
                     operationMemory = operationMemory.substring(0,operationMemory.length()-1)+pressedButtonTag;
                 } else {
-                    operationMemory = operationMemory + " " + pressedButtonTag;
+                    operationMemory = operationMemory /*+ " "*/ + pressedButtonTag;
                 }
 
             } else{
@@ -53,19 +60,23 @@ public class SimpleCalculator extends AppCompatActivity {
                 if(isNumber(String.valueOf(operationMemory.charAt(operationMemory.length()-1)))){ //if last sign in memory is number then we add that number to memory without space
                     operationMemory =operationMemory + pressedButtonTag;
                 } else {
-                    operationMemory = operationMemory + " " + pressedButtonTag;
+                    operationMemory = operationMemory /*+ " "*/ + pressedButtonTag;
                 }
 
             }
 
         }
 
+        updateMemoryTextView();
+
+    }
+
+    private void updateMemoryTextView(){
         if(operationMemory.length()<22){
             operationMemoryTextView.setText(operationMemory);
         } else {
             operationMemoryTextView.setText(operationMemory.substring(operationMemory.length()-22));
         }
-
     }
 
 
