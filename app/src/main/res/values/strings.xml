@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AdvancedCalculator</string>
+    <string name="mainActivityTextView">Calculator</string>
+    <string name="simpleCalculatorButton">Simple</string>
+    <string name="advancedCalculatorButton">Advanced</string>
+    <string name="aboutButton">About</string>
+    <string name="exitButton">Exit</string>
 </resources>
