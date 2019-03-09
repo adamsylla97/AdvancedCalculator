@@ -14,7 +14,6 @@ public class SimpleCalculator extends AppCompatActivity {
 
     private boolean isSign(String sign){
         if(sign.equals("+") || sign.equals("-") || sign.equals("*") || sign.equals("/")){
-            Log.i("SIGN:","TRUE"+sign);
             return true;
         }
         return false;
@@ -22,7 +21,6 @@ public class SimpleCalculator extends AppCompatActivity {
 
     private boolean isNumber(String number){
         if(number.matches("\\d")){
-            Log.i("NUMBER:","TRUE"+number);
             return true;
         }
         return false;
