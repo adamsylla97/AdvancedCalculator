@@ -17,7 +17,7 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_column="0"
-        android:text="x" />
+        android:text="Bksp" />
 
     <Button
         style="@style/CalcFunctionButtons"
@@ -30,7 +30,7 @@
         android:layout_column="1"
         android:layout_gravity="fill_horizontal"
         android:layout_columnSpan="2"
-        android:text="X" />
+        android:text="C" />
 
 
     <Button
@@ -42,7 +42,7 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_column="3"
-        android:text="X" />
+        android:text="±" />
 
     <!-- 2nd row -->
 
@@ -55,7 +55,7 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="0"
-        android:text="x" />
+        android:text="7" />
 
     <Button
         style="@style/CalcNumberButtons"
@@ -66,7 +66,7 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="1"
-        android:text="x" />
+        android:text="8" />
 
     <Button
         style="@style/CalcNumberButtons"
@@ -77,7 +77,7 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="2"
-        android:text="x" />
+        android:text="9" />
 
     <Button
         style="@style/CalcFunctionButtons"
@@ -88,7 +88,7 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_column="3"
-        android:text="x" />
+        android:text="/" />
 
     <!-- 3rd row -->
 
@@ -101,7 +101,7 @@
         android:layout_columnWeight="1"
         android:layout_row="2"
         android:layout_column="0"
-        android:text="x" />
+        android:text="4" />
 
     <Button
         style="@style/CalcNumberButtons"
@@ -112,7 +112,7 @@
         android:layout_columnWeight="1"
         android:layout_row="2"
         android:layout_column="1"
-        android:text="x" />
+        android:text="5" />
 
     <Button
         style="@style/CalcNumberButtons"
@@ -123,7 +123,7 @@
         android:layout_columnWeight="1"
         android:layout_row="2"
         android:layout_column="2"
-        android:text="x" />
+        android:text="6" />
 
     <Button
         style="@style/CalcFunctionButtons"
@@ -134,7 +134,7 @@
         android:layout_columnWeight="1"
         android:layout_row="2"
         android:layout_column="3"
-        android:text="x" />
+        android:text="*" />
 
     <!-- 4th row -->
 
@@ -147,7 +147,7 @@
         android:layout_columnWeight="1"
         android:layout_row="3"
         android:layout_column="0"
-        android:text="x" />
+        android:text="1" />
 
     <Button
         style="@style/CalcNumberButtons"
@@ -158,7 +158,7 @@
         android:layout_columnWeight="1"
         android:layout_row="3"
         android:layout_column="1"
-        android:text="x" />
+        android:text="2" />
 
     <Button
         style="@style/CalcNumberButtons"
@@ -169,7 +169,7 @@
         android:layout_columnWeight="1"
         android:layout_row="3"
         android:layout_column="2"
-        android:text="x" />
+        android:text="3" />
 
     <Button
         style="@style/CalcFunctionButtons"
@@ -180,7 +180,7 @@
         android:layout_columnWeight="1"
         android:layout_row="3"
         android:layout_column="3"
-        android:text="x" />
+        android:text="-" />
 
     <!-- 5th row -->
 
@@ -193,7 +193,7 @@
         android:layout_columnWeight="1"
         android:layout_row="4"
         android:layout_column="0"
-        android:text="x" />
+        android:text="0" />
 
     <Button
         style="@style/CalcFunctionButtons"
@@ -204,7 +204,7 @@
         android:layout_columnWeight="1"
         android:layout_row="4"
         android:layout_column="1"
-        android:text="x" />
+        android:text="." />
 
     <Button
         style="@style/CalcEqualButton"
@@ -216,7 +216,7 @@
         android:layout_row="4"
         android:layout_column="2"
         android:textColor="@color/colorFunctionalButton"
-        android:text="x" />
+        android:text="=" />
 
     <Button
         style="@style/CalcFunctionButtons"
@@ -227,7 +227,7 @@
         android:layout_columnWeight="1"
         android:layout_row="4"
         android:layout_column="3"
-        android:text="x" />
+        android:text="+" />
 
 
 
