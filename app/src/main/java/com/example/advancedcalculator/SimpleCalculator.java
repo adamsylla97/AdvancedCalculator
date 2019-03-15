@@ -10,7 +10,9 @@ import android.widget.TextView;
 public class SimpleCalculator extends AppCompatActivity {
 
     TextView operationMemoryTextView;
-    String operationMemory = "";
+    TextView resultTextView;
+    StringBuilder resultMemory = new StringBuilder();
+    StringBuilder operationMemory = new StringBuilder();
 
     private boolean isSign(String sign){
         if(sign.equals("+") || sign.equals("-") || sign.equals("*") || sign.equals("/")){
@@ -27,9 +29,23 @@ public class SimpleCalculator extends AppCompatActivity {
     }
 
     public void deleteFromMemory(View view){
-        if(operationMemory.length()!=0){
-            operationMemory = operationMemory.substring(0,operationMemory.length()-1);
-            updateMemoryTextView();
+//        if(operationMemory.length()!=0){
+//            operationMemory = operationMemory.substring(0,operationMemory.length()-1);
+//            updateMemoryTextView();
+//        }
+    }
+
+    private void getResult(StringBuilder operationMemory){
+        String tempMemory = operationMemory.toString();
+        StringBuilder tempNumber = new StringBuilder();
+        Double numberOne = 0.0;
+        Double numberTwo = 0.0;
+        for(int i=0; i<tempMemory.length(); i++){
+            if(isNumber(String.valueOf(tempMemory.charAt(i)))){
+                tempNumber.append(tempMemory.charAt(i));
+            } else if(isSign(String.valueOf(tempMemory.charAt(i)))){
+
+            }
         }
     }
 
@@ -39,35 +55,19 @@ public class SimpleCalculator extends AppCompatActivity {
         String pressedButtonTag = "";
         pressedButtonTag = pressedButton.getTag().toString();
 
-        isSign(pressedButtonTag);
-        isNumber(pressedButtonTag);
-
-        if(operationMemory.length() == 0){
-            operationMemory = operationMemory + " " + pressedButtonTag;
+        if(isNumber(pressedButtonTag)){
+            resultMemory.append(pressedButtonTag);
         }
-        else{
 
-            if(isSign(pressedButtonTag)){
-
-                if(isSign(String.valueOf(operationMemory.charAt(operationMemory.length()-1)))){ //if last sign in memory is sign then we swap it
-                    operationMemory = operationMemory.substring(0,operationMemory.length()-1)+pressedButtonTag;
-                } else {
-                    operationMemory = operationMemory /*+ " "*/ + pressedButtonTag;
-                }
-
-            } else{
-
-                if(isNumber(String.valueOf(operationMemory.charAt(operationMemory.length()-1)))){ //if last sign in memory is number then we add that number to memory without space
-                    operationMemory =operationMemory + pressedButtonTag;
-                } else {
-                    operationMemory = operationMemory /*+ " "*/ + pressedButtonTag;
-                }
-
-            }
-
+        if(isSign(pressedButtonTag)){
+            operationMemory.append(resultMemory).append(pressedButtonTag);
+            resultMemory.delete(0,resultMemory.length());
         }
+
+        Log.i("OPERATIONAL MEMORY:",operationMemory.toString());
 
         updateMemoryTextView();
+        updateResultTextView();
 
     }
 
@@ -79,6 +79,14 @@ public class SimpleCalculator extends AppCompatActivity {
         }
     }
 
+    private void updateResultTextView(){
+        if(resultMemory.length()<11){
+            resultTextView.setText(resultMemory);
+        } else {
+            resultTextView.setText(resultMemory.substring(resultMemory.length()-11));
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +94,7 @@ public class SimpleCalculator extends AppCompatActivity {
         setContentView(R.layout.activity_simple_calc_main);
 
         operationMemoryTextView = findViewById(R.id.operationMemoryTextView);
-        operationMemoryTextView.setText("");
+        resultTextView = findViewById(R.id.resultTextView);
     }
 
 }
