@@ -114,6 +114,36 @@ public class SimpleCalculator extends AppCompatActivity {
 
     }
 
+    public Double multiplication(){
+        try{
+
+            Double result = 0.0;
+            result = Double.parseDouble(rej1) * Double.parseDouble(rej2);
+            rej1 = result.toString();
+            return result;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public Double division(){
+        try{
+
+            Double result = 0.0;
+            result = Double.parseDouble(rej1) / Double.parseDouble(rej2);
+            rej1 = result.toString();
+            return result;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public void computeResult(){
 
         if(rej1.length() != 0 && rej2.length() != 0){
@@ -125,6 +155,14 @@ public class SimpleCalculator extends AppCompatActivity {
                     break;
                 case "-":
                     mainResult = subtraction();
+                    Log.i("main result",mainResult.toString());
+                    break;
+                case "*":
+                    mainResult = multiplication();
+                    Log.i("main result",mainResult.toString());
+                    break;
+                case "/":
+                    mainResult = division();
                     Log.i("main result",mainResult.toString());
                     break;
                 default:
@@ -143,6 +181,7 @@ public class SimpleCalculator extends AppCompatActivity {
         if(isNumber(pressedButtonTag)){
 
             resultMemory.append(pressedButtonTag);
+            updateResultTextView();
 
         }
 
@@ -153,6 +192,12 @@ public class SimpleCalculator extends AppCompatActivity {
             computeResult();
 
             setOperator(pressedButtonTag);
+
+            if(rej1.length()!=0 && rej2.length()!=0){
+                updateResultTextViewWithResult();
+            }
+
+
 
             if(resultMemory.length()!=0){
                 operationMemory.append(resultMemory).append(" ");
@@ -171,7 +216,6 @@ public class SimpleCalculator extends AppCompatActivity {
         }
 
         updateMemoryTextView();
-        updateResultTextView();
 
     }
 
@@ -181,6 +225,26 @@ public class SimpleCalculator extends AppCompatActivity {
         } else {
             operationMemoryTextView.setText(operationMemory.substring(operationMemory.length() - 22));
         }
+    }
+
+    private void updateResultTextViewWithResult() {
+
+        String mainResultSting = "";
+
+        try{
+            Integer mainResultInteger = Integer.parseInt(mainResult.toString());
+            mainResultSting = mainResultInteger.toString();
+        } catch (Exception e){
+            Log.i("ERROR","I CAN'T PARSE TO INT");
+            mainResultSting = mainResult.toString();
+        } finally {
+            if (mainResultSting.length() < 11) {
+                resultTextView.setText(mainResultSting);
+            } else {
+                resultTextView.setText(mainResultSting.substring(mainResultSting.length() - 11));
+            }
+        }
+
     }
 
     private void updateResultTextView() {
