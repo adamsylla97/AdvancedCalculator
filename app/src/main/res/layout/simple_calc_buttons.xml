@@ -196,6 +196,7 @@
         android:layout_column="2"
         android:layout_columnWeight="1"
         android:text="="
+        android:onClick="equalsClicked"
         android:textColor="@color/colorFunctionalButton" />
 
     <Button

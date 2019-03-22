@@ -172,6 +172,32 @@ public class SimpleCalculator extends AppCompatActivity {
 
     }
 
+    public void clearOperationMemory(){
+        operationMemory.delete(0,operationMemory.length());
+        updateMemoryTextView();
+    }
+
+    public void clearResultMemory(){
+        resultMemory.delete(0,resultMemory.length());
+        updateResultTextView();
+    }
+
+    public void clearRegisters(){
+        rej1 = "";
+        rej2 = "";
+        mainResult = 0.0;
+        operator = "";
+    }
+
+    public void equalsClicked(View view){
+        clearOperationMemory();
+        setRegisters();
+        computeResult();
+        clearResultMemory();
+        updateResultTextViewWithResult();
+        clearRegisters();
+    }
+
     public void pressButton(View view) {
         Button pressedButton = (Button) view;
         Log.i("Button pressed:", pressedButton.getTag().toString());
