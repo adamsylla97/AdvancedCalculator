@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,9 +62,77 @@ public class SimpleCalculator extends AppCompatActivity {
 
     }
 
-    Integer rej1 = null;
-    Integer rej2 = null;
+    String rej1 = "";
+    String rej2 = "";
     String operator = "";
+
+    public void setOperator(String sign){
+        operator = sign;
+    }
+
+    public void setRegisters(){
+
+        if(rej1.length() == 0){
+            rej1 = resultMemory.toString();
+        } else {
+            rej2 = resultMemory.toString();
+        }
+
+        Log.i("rej1",rej1);
+        Log.i("rej2",rej2);
+    }
+
+    private Double mainResult = 0.0;
+
+    public Double addition(){
+        try{
+
+            Double result = 0.0;
+            result = Double.parseDouble(rej1) + Double.parseDouble(rej2);
+            rej1 = result.toString();
+            return result;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public Double subtraction(){
+        try{
+
+            Double result = 0.0;
+            result = Double.parseDouble(rej1) - Double.parseDouble(rej2);
+            rej1 = result.toString();
+            return result;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public void computeResult(){
+
+        if(rej1.length() != 0 && rej2.length() != 0){
+
+            switch (operator){
+                case "+":
+                    mainResult = addition();
+                    Log.i("main result",mainResult.toString());
+                    break;
+                case "-":
+                    mainResult = subtraction();
+                    Log.i("main result",mainResult.toString());
+                    break;
+                default:
+                    Log.i("ERROR","NO SUCH OPERATION");
+            }
+        }
+
+    }
 
     public void pressButton(View view) {
         Button pressedButton = (Button) view;
@@ -78,6 +147,12 @@ public class SimpleCalculator extends AppCompatActivity {
         }
 
         if(isSign(pressedButtonTag)){
+
+            setRegisters();
+
+            computeResult();
+
+            setOperator(pressedButtonTag);
 
             if(resultMemory.length()!=0){
                 operationMemory.append(resultMemory).append(" ");
@@ -94,7 +169,6 @@ public class SimpleCalculator extends AppCompatActivity {
             }
 
         }
-
 
         updateMemoryTextView();
         updateResultTextView();
