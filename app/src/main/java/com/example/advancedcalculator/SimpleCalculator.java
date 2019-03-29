@@ -199,6 +199,24 @@ public class SimpleCalculator extends AppCompatActivity {
         resultTextView.setText("");
     }
 
+    public void plusMinusClicked(View view){
+
+        if(resultMemory.length()!= 0){
+            if(resultMemory.charAt(0) == '-'){
+                resultMemory.delete(0,1);
+            } else {
+                String tempResultMemory = resultMemory.toString();
+                Toast.makeText(SimpleCalculator.this,tempResultMemory.toString(),Toast.LENGTH_LONG).show();
+                resultMemory.delete(0,resultMemory.length());
+                resultMemory.append("-").append(tempResultMemory);
+                Log.i("result memory after",resultMemory.toString());
+            }
+        }
+
+        updateResultTextView();
+
+    }
+
     public void pressButton(View view) {
         Button pressedButton = (Button) view;
         Log.i("Button pressed:", pressedButton.getTag().toString());
@@ -209,6 +227,12 @@ public class SimpleCalculator extends AppCompatActivity {
 
             resultMemory.append(pressedButtonTag);
             updateResultTextView();
+
+        }
+
+        if(operationMemory.length() == 0 && resultMemory.length() == 0 && isSign(pressedButtonTag)){
+
+            resultMemory.append("0").append(" ");
 
         }
 
