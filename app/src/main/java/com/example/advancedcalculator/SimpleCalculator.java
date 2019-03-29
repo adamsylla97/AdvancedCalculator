@@ -215,7 +215,7 @@ public class SimpleCalculator extends AppCompatActivity {
                 resultMemory.delete(0,resultMemory.length());
             }
 
-            if(!isSign(String.valueOf(operationMemory.charAt(operationMemory.length()-2)))){
+            if(operationMemory.length() != 0 && !isSign(String.valueOf(operationMemory.charAt(operationMemory.length()-2)))){
                 operationMemory.append(pressedButtonTag).append(" ");
             }
 
