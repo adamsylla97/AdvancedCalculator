@@ -114,12 +114,14 @@ public class SimpleCalculator extends AppCompatActivity {
         try{
 
             Double result = 0.0;
-            if(Double.parseDouble(rej2) == 0.0){
-                Log.i("DIVISION BY 0","HELLO");
-                resultTextView.setText("Nie dziel przez 0!");
-
-            }
             result = Double.parseDouble(rej1) / Double.parseDouble(rej2);
+
+
+            if(Double.parseDouble(rej2) == 0.0){
+                result = 0.0;
+                Toast.makeText(SimpleCalculator.this,"Nie dziel przez 0!",Toast.LENGTH_LONG).show();
+            }
+
             rej1 = result.toString();
 
             return result;
