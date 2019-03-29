@@ -1,5 +1,6 @@
 package com.example.advancedcalculator;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,7 +184,7 @@ public class SimpleCalculator extends AppCompatActivity {
         if(rej1.length() == 0 && rej2.length() == 0){
             resultTextView.setText("");
         } else {
-            updateResultTextViewWithResult();
+             updateResultTextViewWithResult();
         }
         clearRegisters(view);
 
@@ -281,6 +283,32 @@ public class SimpleCalculator extends AppCompatActivity {
         } else {
             resultTextView.setText(resultMemory.substring(resultMemory.length() - 11));
         }
+    }
+
+    int clickCounter = 0;
+
+    public void doubleClick(View view){
+
+        clickCounter++;
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (clickCounter == 1){
+                    if(resultMemory.length()>0){
+                        resultMemory = resultMemory.delete(resultMemory.length()-1,resultMemory.length());
+                        updateResultTextView();
+                    }
+                } else if (clickCounter == 2){
+                    resultMemory = resultMemory.delete(0,resultMemory.length());
+                    updateResultTextView();
+                }
+                clickCounter = 0;
+            }
+        },500);
+
+
     }
 
 
