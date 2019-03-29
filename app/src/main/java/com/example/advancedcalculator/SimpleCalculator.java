@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.math.*;
 
 public class SimpleCalculator extends AppCompatActivity {
 
@@ -39,28 +40,6 @@ public class SimpleCalculator extends AppCompatActivity {
 //        }
     }
 
-    private void getResult(StringBuilder operationMemory) {
-        String tempMemory = operationMemory.toString();
-        StringBuilder tempNumber = new StringBuilder();
-        String[] tempStringTab = operationMemory.toString().split(" ");
-        List<Double> numbersList = new ArrayList<>();
-        List<String> signsList = new ArrayList<>();
-
-        for (int i = 0; i < tempStringTab.length; i++) {
-
-            if (isNumber(tempStringTab[i])) {
-                numbersList.add(Double.parseDouble(tempStringTab[i]));
-            }
-
-            if (isSign(tempStringTab[i])) {
-                if (tempStringTab[i].equals("+") || tempStringTab[i].equals("-")) {
-                    signsList.add(tempStringTab[i]);
-                }
-            }
-
-        }
-
-    }
 
     String rej1 = "";
     String rej2 = "";
@@ -133,8 +112,14 @@ public class SimpleCalculator extends AppCompatActivity {
         try{
 
             Double result = 0.0;
+            if(Double.parseDouble(rej2) == 0.0){
+                Log.i("DIVISION BY 0","HELLO");
+                resultTextView.setText("Nie dziel przez 0!");
+
+            }
             result = Double.parseDouble(rej1) / Double.parseDouble(rej2);
             rej1 = result.toString();
+
             return result;
 
         } catch (Exception e){
@@ -263,6 +248,9 @@ public class SimpleCalculator extends AppCompatActivity {
         } catch (Exception e){
             Log.i("ERROR","I CAN'T PARSE TO INT");
             mainResultSting = mainResult.toString();
+            if(mainResultSting.length() > 11){
+                mainResultSting = mainResultSting.substring(0,11);
+            }
         } finally {
             if (mainResultSting.length() < 11) {
                 resultTextView.setText(mainResultSting);
