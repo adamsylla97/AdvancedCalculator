@@ -167,7 +167,7 @@ public class SimpleCalculator extends AppCompatActivity {
         updateResultTextView();
     }
 
-    public void clearRegisters(){
+    public void clearRegisters(View view){
         rej1 = "";
         rej2 = "";
         mainResult = 0.0;
@@ -179,8 +179,22 @@ public class SimpleCalculator extends AppCompatActivity {
         setRegisters();
         computeResult();
         clearResultMemory();
-        updateResultTextViewWithResult();
-        clearRegisters();
+        if(rej1.length() == 0 && rej2.length() == 0){
+            resultTextView.setText("");
+        } else {
+            updateResultTextViewWithResult();
+        }
+        clearRegisters(view);
+
+    }
+
+    public void bskpClicked(View view){
+        clearOperationMemory();
+        setRegisters();
+        computeResult();
+        clearResultMemory();
+        clearRegisters(view);
+        resultTextView.setText("");
     }
 
     public void pressButton(View view) {
