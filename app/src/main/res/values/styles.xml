@@ -15,7 +15,6 @@
     <!-- Calc functional buttons theme. -->
     <style name="CalcFunctionButtons">
         <item name="android:textSize">30sp</item>
-        <item name="android:minHeight">95dp</item>
         <item name="android:textColor">@color/colorTextFunctionalButton</item>
         <item name="android:background">@drawable/round_functional_buttons</item>
     </style>
@@ -23,7 +22,6 @@
     <!-- Calc number buttons theme. -->
     <style name="CalcNumberButtons">
         <item name="android:textSize">30sp</item>
-        <item name="android:minHeight">95dp</item>
         <item name="android:textColor">@color/colorFunctionalButton</item>
         <item name="android:background">@drawable/round_number_buttons</item>
     </style>
@@ -31,7 +29,6 @@
     <!-- Calc equals button theme. -->
     <style name="CalcEqualButton">
         <item name="android:textSize">30sp</item>
-        <item name="android:minHeight">95dp</item>
         <item name="android:textColor">@color/colorFunctionalButton</item>
         <item name="android:background">@drawable/round_equal_button</item>
     </style>

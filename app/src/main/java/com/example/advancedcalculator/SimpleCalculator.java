@@ -223,6 +223,8 @@ public class SimpleCalculator extends AppCompatActivity {
 
     }
 
+
+
     public void pressButton(View view) {
         Button pressedButton = (Button) view;
         Log.i("Button pressed:", pressedButton.getTag().toString());
@@ -349,6 +351,8 @@ public class SimpleCalculator extends AppCompatActivity {
 
 
     }
+
+
 
 
     @Override
