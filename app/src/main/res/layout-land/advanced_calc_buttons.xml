@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/GridLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <Button
+        android:id="@+id/bksp"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:onClick="bskpClicked"
+        android:text="Bksp" />
+
+    <Button
+        android:id="@+id/button7"
+        style="@style/CalcNumberButtons"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:onClick="pressButton"
+        android:tag="7"
+        android:text="7" />
+
+    <Button
+        android:id="@+id/button8"
+        style="@style/CalcNumberButtons"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="8"
+        android:text="8" />
+
+    <Button
+        android:id="@+id/button9"
+        style="@style/CalcNumberButtons"
+        android:layout_row="0"
+        android:layout_column="3"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="9"
+        android:text="9" />
+
+    <Button
+        android:id="@+id/slash"
+        style="@style/CalcFunctionButtons"
+        android:layout_rowWeight="1"
+        android:layout_row="0"
+        android:layout_column="4"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:tag="/"
+        android:text="/" />
+
+    <Button
+        android:id="@+id/sin"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="0"
+        android:layout_column="5"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="sin" />
+
+    <Button
+        android:id="@+id/sqrt"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="0"
+        android:layout_column="6"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="sqrt" />
+
+
+
+
+
+
+    <Button
+        android:id="@+id/buttonc"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_rowSpan="2"
+        android:layout_columnWeight="1"
+        android:onClick="doubleClick"
+        android:tag="c"
+        android:layout_rowWeight="1"
+        android:text="C" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_rowWeight="1"
+        style="@style/CalcNumberButtons"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:tag="4"
+        android:text="4" />
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/CalcNumberButtons"
+        android:layout_row="1"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="5"
+        android:text="5" />
+
+    <Button
+        android:id="@+id/button6"
+        style="@style/CalcNumberButtons"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="3"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="6"
+        android:text="6" />
+
+    <Button
+        android:id="@+id/multiply"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="1"
+        android:layout_column="4"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="*"
+        android:text="*"
+        />
+
+    <Button
+        android:id="@+id/cos"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="1"
+        android:layout_column="5"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="cos" />
+
+    <Button
+        android:id="@+id/x2"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="1"
+        android:layout_column="6"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="x^2" />
+
+
+
+
+    <Button
+        android:id="@+id/button1"
+        style="@style/CalcNumberButtons"
+        android:layout_rowWeight="1"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:tag="1"
+        android:text="1" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/CalcNumberButtons"
+        android:layout_row="2"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="2"
+        android:text="2" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/CalcNumberButtons"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="3"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="3"
+        android:text="3" />
+
+    <Button
+        android:id="@+id/minus"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="2"
+        android:layout_column="4"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:layout_rowWeight="1"
+        android:tag="-"
+        android:text="-" />
+
+
+    <Button
+        android:id="@+id/tan"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="2"
+        android:layout_column="5"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="tan" />
+
+    <Button
+        android:id="@+id/xy"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="2"
+        android:layout_column="6"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="x^y" />
+
+
+
+
+
+
+
+    <Button
+        android:id="@+id/plusmin"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:onClick="plusMinusClicked"
+        android:text="±" />
+
+    <Button
+        android:id="@+id/zero"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:onClick="dotClicked"
+        android:layout_rowWeight="1"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/dot"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="3"
+        android:layout_column="2"
+        android:layout_columnWeight="1"
+        android:onClick="dotClicked"
+        android:layout_rowWeight="1"
+        android:text="." />
+
+    <Button
+        android:id="@+id/equals"
+        style="@style/CalcEqualButton"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="3"
+        android:layout_columnWeight="1"
+        android:onClick="equalsClicked"
+        android:layout_rowWeight="1"
+        android:text="="
+        android:textColor="@color/colorFunctionalButton" />
+
+    <Button
+        android:id="@+id/plus"
+        style="@style/CalcFunctionButtons"
+        android:layout_row="3"
+        android:layout_column="4"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:onClick="pressButton"
+        android:tag="+"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/ln"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="3"
+        android:layout_column="5"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="ln" />
+
+    <Button
+        android:id="@+id/log"
+        style="@style/CalcFunctionButtons"
+        android:layout_gravity="fill_vertical"
+        android:layout_row="3"
+        android:layout_column="6"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:text="log" />
+
+</GridLayout>
