@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/colorTextFunctionalButton"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="50dp"
@@ -17,7 +17,7 @@
         android:layout_marginBottom="70dp"
         android:gravity="center|center_vertical"
         android:text="@string/mainActivityTextView"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorFunctionalButton"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -28,28 +28,40 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/CalcFunctionButtons"
         android:layout_marginBottom="5dp"
-        android:text="@string/simpleCalculatorButton" />
+        android:text="@string/simpleCalculatorButton"
+        android:tag="simple"
+        android:onClick="buttonClicked"/>
 
     <Button
         android:id="@+id/button2"
+        style="@style/CalcFunctionButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="@string/advancedCalculatorButton" />
+        android:text="@string/advancedCalculatorButton"
+        android:tag="advanced"
+        android:onClick="buttonClicked"/>
 
     <Button
         android:id="@+id/button3"
+        style="@style/CalcFunctionButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="@string/aboutButton" />
+        android:text="@string/aboutButton"
+        android:tag="about"
+        android:onClick="buttonClicked"/>
 
     <Button
         android:id="@+id/button4"
+        style="@style/CalcEqualButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:text="@string/exitButton" />
+        android:text="@string/exitButton"
+        android:tag="exit"
+        android:onClick="buttonClicked"/>
 
 </LinearLayout>
