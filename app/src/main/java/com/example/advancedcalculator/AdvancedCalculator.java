@@ -35,6 +35,13 @@ public class AdvancedCalculator extends AppCompatActivity {
         return false;
     }
 
+    private boolean isOperation(String sign){
+        if(sign.equals("x^2") || sign.equals("sqrt") || sign.equals("sin") || sign.equals("cos") || sign.equals("tan") || sign.equals("log") || sign.equals("ln")){
+            return true;
+        }
+        return false;
+    }
+
     String rej1 = "";
     String rej2 = "";
     String operator = "";
@@ -173,6 +180,9 @@ public class AdvancedCalculator extends AppCompatActivity {
     public void equalsClicked(View view) {
         clearOperationMemory();
         setRegisters();
+        operationMemoryToClear = 0;
+        isOperationLast = false;
+        updateAfterOperation = true;
         computeResult();
         clearResultMemory();
         if (rej1.length() == 0 && rej2.length() == 0) {
@@ -223,7 +233,338 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     }
 
+    int operationMemoryToClear = 0;
+    Double resultOfOperation = 0.0;
 
+    public void powerToTwo(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.pow(temp,2);
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("sqr(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 7+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    public void computeSqrt(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.sqrt(temp);
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("sqrt(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 8+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    public void computeSin(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.sin(Math.toRadians(temp));
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("sin(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 7+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    public void computeCos(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.cos(Math.toRadians(temp));
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("cos(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 7+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    public void computeCTan(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.tan(Math.toRadians(temp));
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("tan(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 7+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    public void computeLog(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.log10(temp);
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("log(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 7+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    public void computeLn(){
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = Math.log(temp);
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+        operationMemory.append(" ").append("ln(").append(temp.toString()).append(")").append(" ");
+        operationMemoryToClear = 6+String.valueOf(temp).length();
+
+        resultOfOperation = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+    boolean updateAfterOperation = true;
+
+    public void advancedButtonClicked(String pressedButtonText) {
+
+        switch (pressedButtonText){
+
+            case "x^2":
+                powerToTwo();
+                break;
+            case "sqrt":
+                computeSqrt();
+                break;
+            case "sin":
+                computeSin();
+                break;
+            case "cos":
+                computeCos();
+                break;
+            case "tan":
+                computeCTan();
+                break;
+            case "log":
+                computeLog();
+                break;
+            case "ln":
+                computeLn();
+                break;
+            default:
+                Log.i("ERROR","NO SUCH OPTION");
+
+        }
+
+    }
+
+    public boolean isOperationLast = false;
 
     public void pressButton(View view) {
         Button pressedButton = (Button) view;
@@ -232,6 +573,16 @@ public class AdvancedCalculator extends AppCompatActivity {
         pressedButtonTag = pressedButton.getTag().toString();
 
         if (isNumber(pressedButtonTag)) {
+
+            if(isOperationLast){
+                resultMemory.delete(0,resultMemory.length());
+                if(operationMemory.length() > operationMemoryToClear){
+                    operationMemory.delete(operationMemory.length()-operationMemoryToClear,operationMemory.length());
+                }
+                operationMemoryToClear = 0;
+                isOperationLast = false;
+            }
+
 
             if (resultMemory.length() > 0) {
                 if (!(pressedButtonTag.equals("0") && resultMemory.charAt(resultMemory.length() - 1) == '0' && resultMemory.length() == 1)) {
@@ -248,6 +599,16 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         }
 
+        if(isOperation(pressedButton.getText().toString())){
+
+            isOperationLast = true;
+
+            setRegisters();
+
+            advancedButtonClicked(pressedButton.getText().toString());
+
+        }
+
         if (operationMemory.length() == 0 && resultMemory.length() == 0 && isSign(pressedButtonTag)) {
 
             resultMemory.append("0").append(" ");
@@ -255,6 +616,9 @@ public class AdvancedCalculator extends AppCompatActivity {
         }
 
         if (isSign(pressedButtonTag)) {
+
+            isOperationLast = false;
+            updateAfterOperation = true;
 
             setRegisters();
 
@@ -282,8 +646,8 @@ public class AdvancedCalculator extends AppCompatActivity {
             }
 
         }
-
         updateMemoryTextView();
+
 
     }
 
@@ -304,6 +668,9 @@ public class AdvancedCalculator extends AppCompatActivity {
             mainResultSting = mainResultInteger.toString();
         } catch (Exception e) {
             Log.i("ERROR", "I CAN'T PARSE TO INT");
+            if(mainResult == 0 && rej1.length()!=0){
+                mainResult = Double.valueOf(rej1);
+            }
             mainResultSting = mainResult.toString();
             if (mainResultSting.length() > 11) {
                 mainResultSting = mainResultSting.substring(0, 11);
@@ -322,7 +689,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         if (resultMemory.length() < 11) {
             resultTextView.setText(resultMemory);
         } else {
-            resultTextView.setText(resultMemory.substring(resultMemory.length() - 11));
+            resultTextView.setText(resultMemory.substring(0,12));
         }
     }
 
@@ -351,8 +718,6 @@ public class AdvancedCalculator extends AppCompatActivity {
 
 
     }
-
-
 
 
     @Override
