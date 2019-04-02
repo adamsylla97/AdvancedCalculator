@@ -22,7 +22,7 @@ public class AdvancedCalculator extends AppCompatActivity {
     StringBuilder operationMemory = new StringBuilder();
 
     private boolean isSign(String sign) {
-        if (sign.equals("+") || sign.equals("-") || sign.equals("*") || sign.equals("/")) {
+        if (sign.equals("+") || sign.equals("-") || sign.equals("*") || sign.equals("/") || sign.equals("^")) {
             return true;
         }
         return false;
@@ -132,6 +132,27 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     }
 
+    public Double power() {
+        try {
+
+            Double result = 0.0;
+
+
+            result = Math.pow(Double.parseDouble(rej1),Double.parseDouble(rej2));
+            rej1 = result.toString();
+            Toast.makeText(AdvancedCalculator.this,result.toString(),Toast.LENGTH_LONG).show();
+            Log.i("POWER rej1",rej1);
+            Log.i("POWER rej2",rej2);
+            Log.i("POWER result",result.toString());
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     public void computeResult() {
 
         if (rej1.length() != 0 && rej2.length() != 0) {
@@ -151,6 +172,10 @@ public class AdvancedCalculator extends AppCompatActivity {
                     break;
                 case "/":
                     mainResult = division();
+                    Log.i("main result", mainResult.toString());
+                    break;
+                case "^":
+                    mainResult = power();
                     Log.i("main result", mainResult.toString());
                     break;
                 default:
@@ -268,6 +293,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         operationMemoryToClear = 7+String.valueOf(temp).length();
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);
@@ -310,6 +336,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         operationMemoryToClear = 8+String.valueOf(temp).length();
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);
@@ -352,6 +379,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         operationMemoryToClear = 7+String.valueOf(temp).length();
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);
@@ -394,6 +422,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         operationMemoryToClear = 7+String.valueOf(temp).length();
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);
@@ -436,6 +465,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         operationMemoryToClear = 7+String.valueOf(temp).length();
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);
@@ -461,7 +491,15 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         Log.i("temp",temp.toString());
 
-        Double result = Math.log10(temp);
+        Double result = 0.0;
+        Boolean noError = true;
+
+        if(temp == 0.0){
+            Toast.makeText(AdvancedCalculator.this,"Zakazane dzialanie (Log(0))",Toast.LENGTH_LONG).show();
+            noError = false;
+        } else{
+            result = Math.log10(temp);
+        }
 
         Log.i("result",result.toString());
         if(rej1.length() == 0){
@@ -474,10 +512,13 @@ public class AdvancedCalculator extends AppCompatActivity {
             resultMemory.append(rej2);
         }
 
-        operationMemory.append(" ").append("log(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 7+String.valueOf(temp).length();
+        if(noError){
+            operationMemory.append(" ").append("ln(").append(temp.toString()).append(")").append(" ");
+            operationMemoryToClear = 6+String.valueOf(temp).length();
+        }
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);
@@ -503,7 +544,15 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         Log.i("temp",temp.toString());
 
-        Double result = Math.log(temp);
+        Double result = 0.0;
+        Boolean noError = true;
+
+        if(temp == 0.0){
+            Toast.makeText(AdvancedCalculator.this,"Zakazane dzialanie (Ln(0))",Toast.LENGTH_LONG).show();
+            noError = false;
+        } else{
+            result = Math.log10(temp);
+        }
 
         Log.i("result",result.toString());
         if(rej1.length() == 0){
@@ -516,10 +565,13 @@ public class AdvancedCalculator extends AppCompatActivity {
             resultMemory.append(rej2);
         }
 
-        operationMemory.append(" ").append("ln(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 6+String.valueOf(temp).length();
+        if(noError){
+            operationMemory.append(" ").append("ln(").append(temp.toString()).append(")").append(" ");
+            operationMemoryToClear = 6+String.valueOf(temp).length();
+        }
 
         resultOfOperation = result;
+        mainResult = result;
 
         Log.i("af rej1", rej1);
         Log.i("af rej2",rej2);

@@ -349,7 +349,6 @@ public class SimpleCalculator extends AppCompatActivity {
             }
         }, 500);
 
-
     }
 
 
@@ -358,7 +357,7 @@ public class SimpleCalculator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simple_calc_main);
+        setContentView(R.layout.activity_advanced_calc_main);
 
         operationMemoryTextView = findViewById(R.id.operationMemoryTextView);
         resultTextView = findViewById(R.id.resultTextView);
