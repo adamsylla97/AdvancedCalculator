@@ -68,7 +68,9 @@
         android:layout_column="5"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:text="sin" />
+        android:text="sin"
+        android:tag = "advanced"
+        android:onClick = "pressButton" />
 
     <Button
         android:id="@+id/sqrt"
@@ -78,6 +80,8 @@
         android:layout_column="6"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
+        android:tag="advanced"
+        android:onClick="pressButton"
         android:text="sqrt" />
 
 
@@ -151,7 +155,9 @@
         android:layout_column="5"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
-        android:text="cos" />
+        android:text="cos"
+        android:tag = "advanced"
+        android:onClick="pressButton" />
 
     <Button
         android:id="@+id/x2"
@@ -160,8 +166,10 @@
         android:layout_row="1"
         android:layout_column="6"
         android:layout_columnWeight="1"
+        android:onClick="pressButton"
         android:layout_rowWeight="1"
-        android:text="x^2" />
+        android:text="x^2"
+        android:tag="advanced" />
 
 
 
@@ -220,6 +228,8 @@
         android:layout_column="5"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
+        android:tag = "advanced"
+        android:onClick = "pressButton"
         android:text="tan" />
 
     <Button
@@ -230,6 +240,8 @@
         android:layout_column="6"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
+        android:onClick="pressButton"
+        android:tag="^"
         android:text="x^y" />
 
 
@@ -301,6 +313,8 @@
         android:layout_column="5"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
+        android:tag="advanced"
+        android:onClick="pressButton"
         android:text="ln" />
 
     <Button
@@ -311,6 +325,8 @@
         android:layout_column="6"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
+        android:tag="advanced"
+        android:onClick="pressButton"
         android:text="log" />
 
 </GridLayout>
