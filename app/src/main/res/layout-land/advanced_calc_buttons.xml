@@ -107,7 +107,7 @@
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:onClick="pressButton"
-        android:tag="procent"
+        android:tag="advanced"
         android:layout_rowWeight="1"
         android:text="%"
         />

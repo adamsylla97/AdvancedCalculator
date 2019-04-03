@@ -36,7 +36,7 @@ public class AdvancedCalculator extends AppCompatActivity {
     }
 
     private boolean isOperation(String sign){
-        if(sign.equals("x^2") || sign.equals("sqrt") || sign.equals("sin") || sign.equals("cos") || sign.equals("tan") || sign.equals("log") || sign.equals("ln")){
+        if(sign.equals("x^2") || sign.equals("sqrt") || sign.equals("sin") || sign.equals("cos") || sign.equals("tan") || sign.equals("log") || sign.equals("ln") || sign.equals("%")){
             return true;
         }
         return false;
@@ -582,6 +582,60 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     }
 
+    public void computeProcent(){
+
+        Toast.makeText(AdvancedCalculator.this,"TEST %%%%",Toast.LENGTH_SHORT).show();
+
+        Double temp = 0.0;
+
+        Log.i("rej1", rej1);
+        Log.i("rej2",rej2);
+
+        if(mainResult == 0.0){
+            temp = Double.valueOf(rej1);
+        } else {
+            temp = mainResult;
+        }
+
+        Log.i("temp",temp.toString());
+
+        Double result = 0.0;
+
+        String procentValue = resultMemory.toString();
+        result = Double.valueOf(procentValue)/100*temp;
+
+
+
+        Log.i("result",result.toString());
+        if(rej1.length() == 0){
+            rej1 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej1);
+        } else {
+            rej2 = result.toString();
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(rej2);
+        }
+
+
+        operationMemory.append(" ").append(procentValue).append("%").append(" ");
+        operationMemoryToClear = 3+String.valueOf(temp).length();
+
+
+        resultOfOperation = result;
+        mainResult = result;
+
+        Log.i("af rej1", rej1);
+        Log.i("af rej2",rej2);
+
+        updateAfterOperation = false;
+
+        updateResultTextView();
+
+    }
+
+
+
     boolean updateAfterOperation = true;
 
     public void advancedButtonClicked(String pressedButtonText) {
@@ -608,6 +662,9 @@ public class AdvancedCalculator extends AppCompatActivity {
                 break;
             case "ln":
                 computeLn();
+                break;
+            case "%":
+                computeProcent();
                 break;
             default:
                 Log.i("ERROR","NO SUCH OPTION");
