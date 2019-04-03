@@ -484,12 +484,9 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     }
 
-    public void computeLog(){
+    public void computeLog(View view){
 
         Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
 
         if(resultMemory.length() == 0){
             temp = 0.0;
@@ -497,52 +494,18 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
-        Log.i("temp",temp.toString());
 
-        Double result = 0.0;
-        Boolean noError = true;
 
-        if(temp == 0.0){
-            Toast.makeText(AdvancedCalculator.this,"Zakazane dzialanie (Log(0))",Toast.LENGTH_LONG).show();
-            noError = false;
-        } else{
-            result = Math.log10(temp);
-        }
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej1 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
-        }
-
-        if(noError){
-            operationMemory.append(" ").append("ln(").append(temp.toString()).append(")").append(" ");
-            operationMemoryToClear = 6+String.valueOf(temp).length();
-        }
-
-        resultOfOperation = result;
-        mainResult = result;
-
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
-
+        operationMemory.append("log(").append(temp.toString()).append(")").append(" ");
+        resultMemory.delete(0,resultMemory.length());
         updateResultTextView();
+        updateMemoryTextView();
 
     }
 
-    public void computeLn(){
+    public void computeLn(View view){
 
         Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
 
         if(resultMemory.length() == 0){
             temp = 0.0;
@@ -550,42 +513,11 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
-        Log.i("temp",temp.toString());
 
-        Double result = 0.0;
-        Boolean noError = true;
 
-        if(temp == 0.0){
-            Toast.makeText(AdvancedCalculator.this,"Zakazane dzialanie (Ln(0))",Toast.LENGTH_LONG).show();
-            noError = false;
-        } else{
-            result = Math.log10(temp);
-        }
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej1 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
-        }
-
-        if(noError){
-            operationMemory.append(" ").append("ln(").append(temp.toString()).append(")").append(" ");
-            operationMemoryToClear = 6+String.valueOf(temp).length();
-        }
-
-        resultOfOperation = result;
-        mainResult = result;
-
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
-
+        operationMemory.append("ln(").append(temp.toString()).append(")").append(" ");
+        resultMemory.delete(0,resultMemory.length());
+        updateMemoryTextView();
         updateResultTextView();
 
     }
@@ -645,41 +577,6 @@ public class AdvancedCalculator extends AppCompatActivity {
 
 
     boolean updateAfterOperation = true;
-
-    public void advancedButtonClicked(String pressedButtonText) {
-
-        switch (pressedButtonText){
-
-            case "x^2":
-                powerToTwo();
-                break;
-            case "sqrt":
-                computeSqrt();
-                break;
-            case "sin":
-                computeSin();
-                break;
-            case "cos":
-                computeCos();
-                break;
-            case "tan":
-                computeCTan();
-                break;
-            case "log":
-                computeLog();
-                break;
-            case "ln":
-                computeLn();
-                break;
-            case "%":
-                computeProcent();
-                break;
-            default:
-                Log.i("ERROR","NO SUCH OPTION");
-
-        }
-
-    }
 
     public boolean isOperationLast = false;
 

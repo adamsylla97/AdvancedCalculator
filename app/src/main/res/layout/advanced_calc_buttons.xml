@@ -100,7 +100,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:tag="advanced"
-        android:onClick="pressButton"
+        android:onClick="computeLn"
         android:text="ln" />
 
     <!-- 3rd row -->
@@ -150,7 +150,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:tag="advanced"
-        android:onClick="pressButton"
+        android:onClick="computeLog"
         android:text="log" />
 
 
