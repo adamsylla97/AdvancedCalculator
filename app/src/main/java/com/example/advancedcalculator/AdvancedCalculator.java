@@ -711,6 +711,14 @@ public class AdvancedCalculator extends AppCompatActivity {
         }
     }
 
+    private void updateMemoryTextView(String operationMemory) {
+        if (operationMemory.length() < 22) {
+            operationMemoryTextView.setText(operationMemory);
+        } else {
+            operationMemoryTextView.setText(operationMemory.substring(operationMemory.length() - 22));
+        }
+    }
+
     private void updateResultTextViewWithResult() {
 
         String mainResultSting = "";
@@ -742,6 +750,14 @@ public class AdvancedCalculator extends AppCompatActivity {
             resultTextView.setText(resultMemory);
         } else {
             resultTextView.setText(resultMemory.substring(0,12));
+        }
+    }
+
+    private void updateResultTextView(String resultMemory) {
+        if (resultMemory.length() < 11) {
+            resultTextView.setText(resultMemory);
+        } else {
+            resultTextView.setText(resultMemory.substring(resultMemory.length() - 11));
         }
     }
 
@@ -779,6 +795,62 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         operationMemoryTextView = findViewById(R.id.operationMemoryTextView);
         resultTextView = findViewById(R.id.resultTextView);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+
+        outState.putString("resultMemory",resultMemory.toString());
+        outState.putString("operationMemory",operationMemory.toString());
+        outState.putString("rej1",rej1);
+        outState.putString("rej2",rej2);
+        outState.putDouble("result",mainResult);
+        outState.putString("operator",operator);
+        outState.putBoolean("isOperationLast",isOperationLast);
+        outState.putBoolean("updateAfterOperation",updateAfterOperation);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String result = savedInstanceState.getString("resultMemory");
+        String operation = savedInstanceState.getString("operationMemory");
+
+        String rej1Temp = savedInstanceState.getString("rej1");
+        String rej2Temp = savedInstanceState.getString("rej2");
+        Double mainResultTemp = savedInstanceState.getDouble("result");
+        String operatorTemp = savedInstanceState.getString("operator");
+
+        if(rej1Temp != null) {
+            rej1 = rej1Temp;
+        }
+
+        if(rej2Temp != null){
+            rej2 = rej2Temp;
+        }
+
+        if(mainResultTemp != null){
+            mainResult = mainResultTemp;
+        }
+
+        if(operatorTemp != null){
+            operator = operatorTemp;
+
+        }
+
+        if(result != null){
+            updateResultTextView(result);
+            resultMemory.append(result);
+        }
+
+        if (operation != null){
+            updateMemoryTextView(operation);
+            operationMemory.append(result);
+        }
+
     }
 
 }
