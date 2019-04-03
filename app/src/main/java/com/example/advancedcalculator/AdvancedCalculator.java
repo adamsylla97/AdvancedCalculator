@@ -203,19 +203,27 @@ public class AdvancedCalculator extends AppCompatActivity {
     }
 
     public void equalsClicked(View view) {
-        clearOperationMemory();
-        setRegisters();
-        operationMemoryToClear = 0;
-        isOperationLast = false;
-        updateAfterOperation = true;
-        computeResult();
-        clearResultMemory();
-        if (rej1.length() == 0 && rej2.length() == 0) {
-            resultTextView.setText("");
-        } else {
-            updateResultTextViewWithResult();
+
+        if(resultMemory.length() > 0){
+            operationMemory.append(resultMemory);
         }
-        clearRegisters(view);
+
+
+        if (operationMemory.length() > 0) {
+            computeFinalResult(operationMemory.toString());
+            updateResultTextView();
+            resultMemory.delete(0, resultMemory.length());
+        }
+
+        if(resultMemory.length()> 0){
+            operationMemory.append(resultMemory).append(" ");
+        }
+
+        clearOperationMemory();
+        updateMemoryTextView();
+        //clearResultMemory();
+        //clearRegisters(view);
+        //clearOperationMemory();
 
     }
 
@@ -675,24 +683,41 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     public boolean isOperationLast = false;
 
+    public void computeFinalResult(String operationMemory){
+
+        Log.i("Operation memory",operationMemory);
+
+        String[] operationTab = operationMemory.split(" ");
+        String[] operationTab2;
+
+        String[] alternativeTab2 = new String[operationTab.length-1];
+
+        if(!CalculatorFunctions.isNumber(operationTab[operationTab.length-1])){
+            for( int i = 0; i<operationTab.length-1; i++){
+                alternativeTab2[i] = operationTab[i];
+            }
+
+            operationTab2 = ComputeResults.computeSimpleOperations(alternativeTab2);
+        } else {
+            operationTab2 = ComputeResults.computeSimpleOperations(operationTab);
+        }
+
+        List<String> tempList = ComputeResults.computeAdvancedOperations(operationTab2);
+        String finalResult = ComputeResults.computeFinalResult(tempList);
+        resultMemory.delete(0,resultMemory.length());
+        resultMemory.append(finalResult);
+
+        Log.i("final result",finalResult);
+
+    }
+
     public void pressButton(View view) {
         Button pressedButton = (Button) view;
         Log.i("Button pressed:", pressedButton.getTag().toString());
         String pressedButtonTag = "";
         pressedButtonTag = pressedButton.getTag().toString();
 
-        if (isNumber(pressedButtonTag)) {
-
-            if(isOperationLast){
-                resultMemory.delete(0,resultMemory.length());
-                if(operationMemory.length() > operationMemoryToClear){
-                    operationMemory.delete(operationMemory.length()-operationMemoryToClear,operationMemory.length());
-                }
-                operationMemoryToClear = 0;
-                isOperationLast = false;
-            }
-
-
+        if(isNumber(pressedButtonTag)){
             if (resultMemory.length() > 0) {
                 if (!(pressedButtonTag.equals("0") && resultMemory.charAt(resultMemory.length() - 1) == '0' && resultMemory.length() == 1)) {
                     resultMemory.append(pressedButtonTag);
@@ -704,41 +729,9 @@ public class AdvancedCalculator extends AppCompatActivity {
                 updateResultTextView();
 
             }
-
-
         }
 
-        if(isOperation(pressedButton.getText().toString())){
-
-            isOperationLast = true;
-
-            setRegisters();
-
-            advancedButtonClicked(pressedButton.getText().toString());
-
-        }
-
-        if (operationMemory.length() == 0 && resultMemory.length() == 0 && isSign(pressedButtonTag)) {
-
-            resultMemory.append("0").append(" ");
-
-        }
-
-        if (isSign(pressedButtonTag)) {
-
-            isOperationLast = false;
-            updateAfterOperation = true;
-
-            setRegisters();
-
-            computeResult();
-
-            setOperator(pressedButtonTag);
-
-            if (rej1.length() != 0 && rej2.length() != 0) {
-                updateResultTextViewWithResult();
-            }
-
+        if(isSign(pressedButtonTag)){
 
             if (resultMemory.length() != 0) {
                 operationMemory.append(resultMemory).append(" ");
@@ -754,7 +747,15 @@ public class AdvancedCalculator extends AppCompatActivity {
                 operationMemory.append(pressedButtonTag).append(" ");
             }
 
+            if(operationMemory.length() > 0){
+                computeFinalResult(operationMemory.toString());
+                updateResultTextView();
+                resultMemory.delete(0,resultMemory.length());
+            }
         }
+
+
+
         updateMemoryTextView();
 
 
@@ -806,7 +807,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         if (resultMemory.length() < 11) {
             resultTextView.setText(resultMemory);
         } else {
-            resultTextView.setText(resultMemory.substring(0,12));
+            resultTextView.setText(resultMemory.substring(0,11));
         }
     }
 
