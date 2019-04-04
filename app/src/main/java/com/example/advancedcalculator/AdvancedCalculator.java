@@ -204,6 +204,9 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     public void equalsClicked(View view) {
 
+        isOperationLast = false;
+        lastOperationLength = 0;
+
         if(resultMemory.length() > 0){
             operationMemory.append(resultMemory);
         }
@@ -268,13 +271,12 @@ public class AdvancedCalculator extends AppCompatActivity {
 
     int operationMemoryToClear = 0;
     Double resultOfOperation = 0.0;
+    Boolean operationLast = false;
+    int lastOperationLength = 0;
 
-    public void powerToTwo(){
+    public void powerToTwo(View view){
 
         Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
 
         if(resultMemory.length() == 0){
             temp = 0.0;
@@ -282,42 +284,84 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
-        Log.i("temp",temp.toString());
-
-        Double result = Math.pow(temp,2);
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
         }
 
-        operationMemory.append(" ").append("sqr(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 7+String.valueOf(temp).length();
+        resultMemory.delete(0,resultMemory.length());
+        //resultMemory.append("sqr(").append(temp.toString()).append(")");
+        operationMemory.append("sqr(").append(temp.toString()).append(")").append(" ");
 
-        resultOfOperation = result;
-        mainResult = result;
+        operationLast = true;
+        lastOperationLength = 6 + temp.toString().length();
 
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
+        computeFinalResult(operationMemory.toString());
 
         updateResultTextView();
+        resultMemory.delete(0,resultMemory.length());
+        updateMemoryTextView();
+    }
+
+    public void computeSqrt(View view){
+
+        Double temp = 0.0;
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
+        }
+
+        resultMemory.delete(0,resultMemory.length());
+        //resultMemory.append("sqrt(").append(temp.toString()).append(")");
+        operationMemory.append("sqrt(").append(temp.toString()).append(")").append(" ");
+
+        operationLast = true;
+        lastOperationLength = 7 + temp.toString().length();
+        computeFinalResult(operationMemory.toString());
+
+
+        updateResultTextView();
+        resultMemory.delete(0,resultMemory.length());
+        updateMemoryTextView();
+    }
+
+    public void computeSin(View view){
+
+        Double temp = 0.0;
+
+        if(resultMemory.length() == 0){
+            temp = 0.0;
+        } else {
+            temp = Double.valueOf(resultMemory.toString());
+        }
+
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
+        }
+
+        resultMemory.delete(0,resultMemory.length());
+        //resultMemory.append("sin(").append(temp.toString()).append(")");
+        operationMemory.append("sin(").append(temp.toString()).append(")").append(" ");
+
+        operationLast = true;
+        lastOperationLength = 6 + temp.toString().length();
+
+        computeFinalResult(operationMemory.toString());
+
+        updateResultTextView();
+        resultMemory.delete(0,resultMemory.length());
+        updateMemoryTextView();
 
     }
 
-    public void computeSqrt(){
+    public void computeCos(View view){
 
         Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
 
         if(resultMemory.length() == 0){
             temp = 0.0;
@@ -325,42 +369,27 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
-        Log.i("temp",temp.toString());
-
-        Double result = Math.sqrt(temp);
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej1 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
         }
 
-        operationMemory.append(" ").append("sqrt(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 8+String.valueOf(temp).length();
+        resultMemory.delete(0,resultMemory.length());
+        //resultMemory.append("cos(").append(temp.toString()).append(")");
+        operationMemory.append("cos(").append(temp.toString()).append(")").append(" ");
 
-        resultOfOperation = result;
-        mainResult = result;
+        operationLast = true;
+        lastOperationLength = 6 + temp.toString().length();
 
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
+        computeFinalResult(operationMemory.toString());
 
         updateResultTextView();
+        resultMemory.delete(0,resultMemory.length());
+        updateMemoryTextView();
 
     }
 
-    public void computeSin(){
-
+    public void computeCTan(View view){
         Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
 
         if(resultMemory.length() == 0){
             temp = 0.0;
@@ -368,120 +397,22 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
-        Log.i("temp",temp.toString());
-
-        Double result = Math.sin(Math.toRadians(temp));
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej1 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
         }
 
-        operationMemory.append(" ").append("sin(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 7+String.valueOf(temp).length();
+        resultMemory.delete(0,resultMemory.length());
+        //resultMemory.append("tan(").append(temp.toString()).append(")");
+        operationMemory.append("tan(").append(temp.toString()).append(")").append(" ");
 
-        resultOfOperation = result;
-        mainResult = result;
+        operationLast = true;
+        lastOperationLength = 6 + temp.toString().length();
 
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
+        computeFinalResult(operationMemory.toString());
 
         updateResultTextView();
-
-    }
-
-    public void computeCos(){
-
-        Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
-
-        if(resultMemory.length() == 0){
-            temp = 0.0;
-        } else {
-            temp = Double.valueOf(resultMemory.toString());
-        }
-
-        Log.i("temp",temp.toString());
-
-        Double result = Math.cos(Math.toRadians(temp));
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej1 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
-        }
-
-        operationMemory.append(" ").append("cos(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 7+String.valueOf(temp).length();
-
-        resultOfOperation = result;
-        mainResult = result;
-
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
-
-        updateResultTextView();
-
-    }
-
-    public void computeCTan(){
-
-        Double temp = 0.0;
-
-        Log.i("rej1", rej1);
-        Log.i("rej2",rej2);
-
-        if(resultMemory.length() == 0){
-            temp = 0.0;
-        } else {
-            temp = Double.valueOf(resultMemory.toString());
-        }
-
-        Log.i("temp",temp.toString());
-
-        Double result = Math.tan(Math.toRadians(temp));
-
-        Log.i("result",result.toString());
-        if(rej1.length() == 0){
-            rej1 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej1);
-        } else {
-            rej2 = result.toString();
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(rej2);
-        }
-
-        operationMemory.append(" ").append("tan(").append(temp.toString()).append(")").append(" ");
-        operationMemoryToClear = 7+String.valueOf(temp).length();
-
-        resultOfOperation = result;
-        mainResult = result;
-
-        Log.i("af rej1", rej1);
-        Log.i("af rej2",rej2);
-
-        updateAfterOperation = false;
-
-        updateResultTextView();
-
+        resultMemory.delete(0,resultMemory.length());
+        updateMemoryTextView();
     }
 
     public void computeLog(View view){
@@ -494,12 +425,37 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
+        }
+
+        if(temp == 0.0){
+            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA log(0)",Toast.LENGTH_LONG).show();
+            resultMemory.delete(0,resultMemory.length());
+
+            operationLast = false;
+            lastOperationLength = 0;
+
+            clearOperationMemory();
+            updateResultTextView();
+        } else {
+            resultMemory.delete(0,resultMemory.length());
+            //resultMemory.append("log(").append(temp.toString()).append(")");
+            operationMemory.append("log(").append(temp.toString()).append(")").append(" ");
+
+            operationLast = true;
+            lastOperationLength = 6 + temp.toString().length();
+
+            computeFinalResult(operationMemory.toString());
+
+            updateResultTextView();
+
+            resultMemory.delete(0,resultMemory.length());
+
+            updateMemoryTextView();
+        }
 
 
-        operationMemory.append("log(").append(temp.toString()).append(")").append(" ");
-        resultMemory.delete(0,resultMemory.length());
-        updateResultTextView();
-        updateMemoryTextView();
 
     }
 
@@ -513,12 +469,33 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
+        if(operationLast){
+            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
+        }
 
+        if(temp == 0.0){
+            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA ln(0)",Toast.LENGTH_LONG).show();
+            resultMemory.delete(0,resultMemory.length());
 
-        operationMemory.append("ln(").append(temp.toString()).append(")").append(" ");
-        resultMemory.delete(0,resultMemory.length());
-        updateMemoryTextView();
-        updateResultTextView();
+            operationLast = false;
+            lastOperationLength = 0;
+
+            clearOperationMemory();
+            updateResultTextView();
+        } else {
+            resultMemory.delete(0,resultMemory.length());
+            //resultMemory.append("ln(").append(temp.toString()).append(")");
+            operationMemory.append("ln(").append(temp.toString()).append(")").append(" ");
+
+            operationLast = true;
+            lastOperationLength = 5 + temp.toString().length();
+
+            computeFinalResult(operationMemory.toString());
+
+            updateResultTextView();
+            resultMemory.delete(0,resultMemory.length());
+            updateMemoryTextView();
+        }
 
     }
 
@@ -585,7 +562,14 @@ public class AdvancedCalculator extends AppCompatActivity {
         Log.i("Operation memory",operationMemory);
 
         String[] operationTab = operationMemory.split(" ");
+
+        for(int i=0; i<operationTab.length; i++){
+            Log.i("value",operationTab[i]);
+        }
+
         String[] operationTab2;
+
+
 
         String[] alternativeTab2 = new String[operationTab.length-1];
 
@@ -599,12 +583,32 @@ public class AdvancedCalculator extends AppCompatActivity {
             operationTab2 = ComputeResults.computeSimpleOperations(operationTab);
         }
 
-        List<String> tempList = ComputeResults.computeAdvancedOperations(operationTab2);
-        String finalResult = ComputeResults.computeFinalResult(tempList);
-        resultMemory.delete(0,resultMemory.length());
-        resultMemory.append(finalResult);
+        Boolean doNotContinue = false;
 
-        Log.i("final result",finalResult);
+        for(int i=0; i<operationTab2.length; i++){
+            if(operationTab2[i].equals("/")){
+                if(operationTab2[i+1].equals("0")){
+                    Toast.makeText(AdvancedCalculator.this,"NIE DZIEL PRZEZ 0",Toast.LENGTH_LONG).show();
+                    doNotContinue = true;
+                }
+            }
+        }
+
+        if(!doNotContinue){
+
+            List<String> tempList = ComputeResults.computeAdvancedOperations(operationTab2);
+            String finalResult = ComputeResults.computeFinalResult(tempList);
+            resultMemory.delete(0,resultMemory.length());
+            resultMemory.append(finalResult);
+
+        } else {
+            resultMemory.delete(0,resultMemory.length());
+            clearOperationMemory();
+        }
+
+
+
+       // Log.i("final result",finalResult);
 
     }
 
@@ -615,6 +619,14 @@ public class AdvancedCalculator extends AppCompatActivity {
         pressedButtonTag = pressedButton.getTag().toString();
 
         if(isNumber(pressedButtonTag)){
+
+            operationLast = false;
+            lastOperationLength = 0;
+
+            if(resultMemory.toString().contains("(")){
+                resultMemory.delete(0,resultMemory.length());
+            }
+
             if (resultMemory.length() > 0) {
                 if (!(pressedButtonTag.equals("0") && resultMemory.charAt(resultMemory.length() - 1) == '0' && resultMemory.length() == 1)) {
                     resultMemory.append(pressedButtonTag);
@@ -629,6 +641,9 @@ public class AdvancedCalculator extends AppCompatActivity {
         }
 
         if(isSign(pressedButtonTag)){
+
+            operationLast = false;
+            lastOperationLength = 0;
 
             if (resultMemory.length() != 0) {
                 operationMemory.append(resultMemory).append(" ");

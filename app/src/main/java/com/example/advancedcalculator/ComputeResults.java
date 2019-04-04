@@ -6,7 +6,7 @@ public class ComputeResults {
 
     public static String[] computeSimpleOperations(String[] tab){
 
-        for(int i=0; i<tab.length-1; i++){
+        for(int i=0; i<tab.length; i++){
 
             if(tab[i].contains("sin("))
                 tab[i] = CalculatorFunctions.computeSin(tab[i]);

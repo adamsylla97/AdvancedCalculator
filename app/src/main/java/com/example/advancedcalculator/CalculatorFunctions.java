@@ -1,9 +1,14 @@
 package com.example.advancedcalculator;
 
+import android.util.Log;
+
 public class CalculatorFunctions {
 
     public static Boolean isNumber(String x){
         try{
+            if(x.contains("(")){
+                return true;
+            }
             Double.parseDouble(x);
             return true;
         } catch (Exception e){
@@ -50,7 +55,6 @@ public class CalculatorFunctions {
     }
 
     public static String computeLog(String x){
-
         String temp = x.substring(4,x.length()-1);
         Double tempDouble = Double.valueOf(temp);
 
