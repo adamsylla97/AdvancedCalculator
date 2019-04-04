@@ -25,10 +25,12 @@
         android:layout_column="1"
         android:layout_columnWeight="1"
         android:onClick="doubleClick"
+        android:layout_columnSpan="2"
         android:tag="c"
         android:layout_rowWeight="1"
         android:text="C" />
 
+    <!--
     <Button
         android:id="@+id/procent"
         style="@style/CalcFunctionButtons"
@@ -39,7 +41,7 @@
         android:tag="advanced"
         android:layout_rowWeight="1"
         android:text="%"
-        />
+        /> -->
 
 
     <Button

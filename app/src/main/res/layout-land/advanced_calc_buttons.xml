@@ -98,8 +98,10 @@
         android:onClick="doubleClick"
         android:tag="c"
         android:layout_rowWeight="1"
+        android:layout_rowSpan="2"
         android:text="C" />
 
+    <!--
     <Button
         android:id="@+id/procent"
         style="@style/CalcFunctionButtons"
@@ -111,6 +113,8 @@
         android:layout_rowWeight="1"
         android:text="%"
         />
+
+        -->
 
     <Button
         android:id="@+id/button4"
