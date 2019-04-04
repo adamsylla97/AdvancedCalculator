@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.math.*;
 
 public class AdvancedCalculator extends AppCompatActivity {
 
@@ -585,11 +582,21 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         Boolean doNotContinue = false;
 
-        for(int i=0; i<operationTab2.length; i++){
-            if(operationTab2[i].equals("/")){
-                if(operationTab2[i+1].equals("0")){
-                    Toast.makeText(AdvancedCalculator.this,"NIE DZIEL PRZEZ 0",Toast.LENGTH_LONG).show();
-                    doNotContinue = true;
+        for (int i = 0; i < operationTab2.length; i++) {
+            if (operationTab2[i].equals("/")) {
+                {
+                    try {
+
+                        Double temp = Double.parseDouble(operationTab2[i + 1]);
+
+                        if (temp.equals(0.0)) {
+                            Toast.makeText(AdvancedCalculator.this, "NIE DZIEL PRZEZ 0", Toast.LENGTH_LONG).show();
+                            doNotContinue = true;
+                        }
+
+                    } catch (Exception e) {
+                        Log.i("dzielenie przez zero", "false");
+                    }
                 }
             }
         }
