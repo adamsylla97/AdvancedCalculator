@@ -70,7 +70,7 @@
         android:layout_rowWeight="1"
         android:text="sin"
         android:tag = "advanced"
-        android:onClick = "pressButton" />
+        android:onClick = "computeSin" />
 
     <Button
         android:id="@+id/sqrt"
@@ -81,7 +81,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:tag="advanced"
-        android:onClick="pressButton"
+        android:onClick="computeSqrt"
         android:text="sqrt" />
 
 
@@ -168,7 +168,7 @@
         android:layout_rowWeight="1"
         android:text="cos"
         android:tag = "advanced"
-        android:onClick="pressButton" />
+        android:onClick="computeCos" />
 
     <Button
         android:id="@+id/x2"
@@ -177,7 +177,7 @@
         android:layout_row="1"
         android:layout_column="6"
         android:layout_columnWeight="1"
-        android:onClick="pressButton"
+        android:onClick="powerToTwo"
         android:layout_rowWeight="1"
         android:text="x^2"
         android:tag="advanced" />
@@ -240,7 +240,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:tag = "advanced"
-        android:onClick = "pressButton"
+        android:onClick = "computeCTan"
         android:text="tan" />
 
     <Button
@@ -325,7 +325,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:tag="advanced"
-        android:onClick="pressButton"
+        android:onClick="computeLn"
         android:text="ln" />
 
     <Button
@@ -337,7 +337,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:tag="advanced"
-        android:onClick="pressButton"
+        android:onClick="computeLog"
         android:text="log" />
 
 </GridLayout>

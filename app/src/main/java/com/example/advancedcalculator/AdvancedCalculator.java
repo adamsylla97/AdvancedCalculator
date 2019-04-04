@@ -261,7 +261,7 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         if (resultMemory.length() == 0) {
             resultMemory.append("0").append(".");
-        } else if (!(resultMemory.charAt(resultMemory.length() - 1) == '.')) {
+        } else if (!resultMemory.toString().contains(".")){
             resultMemory.append(".");
         }
 
@@ -770,16 +770,12 @@ public class AdvancedCalculator extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState){
 
+        super.onSaveInstanceState(outState);
+
         outState.putString("resultMemory",resultMemory.toString());
         outState.putString("operationMemory",operationMemory.toString());
-        outState.putString("rej1",rej1);
-        outState.putString("rej2",rej2);
-        outState.putDouble("result",mainResult);
-        outState.putString("operator",operator);
-        outState.putBoolean("isOperationLast",isOperationLast);
-        outState.putBoolean("updateAfterOperation",updateAfterOperation);
-
-        super.onSaveInstanceState(outState);
+        outState.putBoolean("operationLast",operationLast);
+        outState.putInt("lastOperationLength",lastOperationLength);
     }
 
     @Override
@@ -788,27 +784,15 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         String result = savedInstanceState.getString("resultMemory");
         String operation = savedInstanceState.getString("operationMemory");
+        Boolean operationLastTemp = savedInstanceState.getBoolean("operationLast");
+        Integer lastOperationLengthTemp = savedInstanceState.getInt("lastOperationLength");
 
-        String rej1Temp = savedInstanceState.getString("rej1");
-        String rej2Temp = savedInstanceState.getString("rej2");
-        Double mainResultTemp = savedInstanceState.getDouble("result");
-        String operatorTemp = savedInstanceState.getString("operator");
-
-        if(rej1Temp != null) {
-            rej1 = rej1Temp;
+        if(operationLastTemp != null){
+            operationLast = operationLastTemp;
         }
 
-        if(rej2Temp != null){
-            rej2 = rej2Temp;
-        }
-
-        if(mainResultTemp != null){
-            mainResult = mainResultTemp;
-        }
-
-        if(operatorTemp != null){
-            operator = operatorTemp;
-
+        if(lastOperationLengthTemp != null){
+            lastOperationLength = lastOperationLengthTemp;
         }
 
         if(result != null){
@@ -818,8 +802,11 @@ public class AdvancedCalculator extends AppCompatActivity {
 
         if (operation != null){
             updateMemoryTextView(operation);
-            operationMemory.append(result);
+            operationMemory.append(operation);
         }
+
+        updateResultTextView(resultMemory.toString());
+        updateMemoryTextView(operationMemory.toString());
 
     }
 
