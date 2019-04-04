@@ -4,6 +4,38 @@ import android.util.Log;
 
 public class CalculatorFunctions {
 
+    public static String shortenString(String x){
+
+        System.out.println("xd");
+        int eIndex = 0;
+        StringBuilder returnString = new StringBuilder();
+
+        if(x.length() > 11) {
+            //get E index
+            if(x.contains("E")){
+                for (int i = 0; i < x.length(); i++) {
+                    if (x.charAt(i) == 'E') {
+                        eIndex = i;
+                        break;
+                    }
+                }
+
+                String temp = x.substring(eIndex);
+                int tempLength = temp.length();
+
+                returnString.append(x);
+                returnString.delete(11 - tempLength, x.length());
+                returnString.append(temp);
+            } else {
+                returnString.append(x);
+                returnString.delete(11,returnString.length());
+            }
+            return returnString.toString();
+
+        }
+        return x;
+    }
+
     public static Boolean isNumber(String x){
         try{
             if(x.contains("(")){

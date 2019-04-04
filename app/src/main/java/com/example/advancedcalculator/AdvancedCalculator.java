@@ -243,7 +243,6 @@ public class AdvancedCalculator extends AppCompatActivity {
                 resultMemory.delete(0, 1);
             } else {
                 String tempResultMemory = resultMemory.toString();
-                Toast.makeText(AdvancedCalculator.this, tempResultMemory.toString(), Toast.LENGTH_LONG).show();
                 resultMemory.delete(0, resultMemory.length());
                 resultMemory.append("-").append(tempResultMemory);
                 Log.i("result memory after", resultMemory.toString());
@@ -426,8 +425,8 @@ public class AdvancedCalculator extends AppCompatActivity {
             operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
         }
 
-        if(temp == 0.0){
-            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA log(0)",Toast.LENGTH_LONG).show();
+        if(temp == 0.0 || temp < 0){
+            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA log(" + temp + ")",Toast.LENGTH_LONG).show();
             resultMemory.delete(0,resultMemory.length());
 
             operationLast = false;
@@ -470,8 +469,8 @@ public class AdvancedCalculator extends AppCompatActivity {
             operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
         }
 
-        if(temp == 0.0){
-            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA ln(0)",Toast.LENGTH_LONG).show();
+        if(temp == 0.0 || temp < 0){
+            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA ln(" + temp + ")",Toast.LENGTH_LONG).show();
             resultMemory.delete(0,resultMemory.length());
 
             operationLast = false;
@@ -605,8 +604,9 @@ public class AdvancedCalculator extends AppCompatActivity {
 
             List<String> tempList = ComputeResults.computeAdvancedOperations(operationTab2);
             String finalResult = ComputeResults.computeFinalResult(tempList);
-            resultMemory.delete(0,resultMemory.length());
-            resultMemory.append(finalResult);
+            String shortenFinalResult = CalculatorFunctions.shortenString(finalResult);
+            resultMemory.delete(0, resultMemory.length());
+            resultMemory.append(shortenFinalResult);
 
         } else {
             resultMemory.delete(0,resultMemory.length());
@@ -726,7 +726,7 @@ public class AdvancedCalculator extends AppCompatActivity {
         if (resultMemory.length() < 11) {
             resultTextView.setText(resultMemory);
         } else {
-            resultTextView.setText(resultMemory.substring(0,11));
+            resultTextView.setText(resultMemory.substring(resultMemory.length()-11,resultMemory.length()));
         }
     }
 

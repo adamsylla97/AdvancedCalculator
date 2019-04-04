@@ -610,8 +610,9 @@ public class SimpleCalculator extends AppCompatActivity {
 
                 List<String> tempList = ComputeResults.computeAdvancedOperations(operationTab2);
                 String finalResult = ComputeResults.computeFinalResult(tempList);
+                String shortenFinalResult = CalculatorFunctions.shortenString(finalResult);
                 resultMemory.delete(0, resultMemory.length());
-                resultMemory.append(finalResult);
+                resultMemory.append(shortenFinalResult);
 
             } else {
                 resultMemory.delete(0, resultMemory.length());
@@ -729,7 +730,7 @@ public class SimpleCalculator extends AppCompatActivity {
             if (resultMemory.length() < 11) {
                 resultTextView.setText(resultMemory);
             } else {
-                resultTextView.setText(resultMemory.substring(0, 11));
+                resultTextView.setText(resultMemory.substring(resultMemory.length()-11,resultMemory.length()));
             }
         }
 
