@@ -308,22 +308,31 @@ public class AdvancedCalculator extends AppCompatActivity {
             temp = Double.valueOf(resultMemory.toString());
         }
 
-        if(operationLast){
-            operationMemory.delete(operationMemory.length()-lastOperationLength,operationMemory.length());
+        if(temp < 0){
+            Toast.makeText(AdvancedCalculator.this,"ZAKAZANA AKCJA sqrt(" + temp + ")",Toast.LENGTH_LONG).show();
+            resultMemory.delete(0,resultMemory.length());
+
+            operationLast = false;
+            lastOperationLength = 0;
+
+            clearOperationMemory();
+            updateResultTextView();
+        } else {
+            resultMemory.delete(0,resultMemory.length());
+            //resultMemory.append("log(").append(temp.toString()).append(")");
+            operationMemory.append("sqrt(").append(temp.toString()).append(")").append(" ");
+
+            operationLast = true;
+            lastOperationLength = 7 + temp.toString().length();
+
+            computeFinalResult(operationMemory.toString());
+
+            updateResultTextView();
+
+            resultMemory.delete(0,resultMemory.length());
+
+            updateMemoryTextView();
         }
-
-        resultMemory.delete(0,resultMemory.length());
-        //resultMemory.append("sqrt(").append(temp.toString()).append(")");
-        operationMemory.append("sqrt(").append(temp.toString()).append(")").append(" ");
-
-        operationLast = true;
-        lastOperationLength = 7 + temp.toString().length();
-        computeFinalResult(operationMemory.toString());
-
-
-        updateResultTextView();
-        resultMemory.delete(0,resultMemory.length());
-        updateMemoryTextView();
     }
 
     public void computeSin(View view){
